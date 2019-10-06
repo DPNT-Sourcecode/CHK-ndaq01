@@ -10,9 +10,10 @@ class TestCheckout():
         assert checkout('AAAAAAAAAA') == 400
 
     def test_checkout_r2_free_B(self):
-        assert checkout ('EE') == 40
-        assert checkout('EEB') == 40
-        assert checkout('EEBB') == 70
-        assert checkout('EEBBB') == 85
+        assert checkout ('EE') == 80
+        assert checkout('EEB') == 80
+        assert checkout('EEBB') == 110
+        assert checkout('EEBBB') == 125
+
 
 
