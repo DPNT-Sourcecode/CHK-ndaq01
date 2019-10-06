@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from accelerate_runner.lib.solutions.CHK.checkout_solution import checkout
+from solutions.CHK.checkout_solution import checkout
 
 
 class TestCheckout(TestCase):
@@ -10,3 +10,4 @@ class TestCheckout(TestCase):
         assert checkout('AAAAA') == 200
         assert checkout('AAAAAA') == 250
         assert checkout('AAAAAAAAAA') == 400
+
