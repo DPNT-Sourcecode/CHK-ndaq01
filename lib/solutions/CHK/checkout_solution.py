@@ -13,19 +13,27 @@ def checkout(skus):
         'C': 20,
         'D': 15
     }
+    basket = {
+        'A': 0,
+        'B': 0,
+        'C': 0,
+        'D': 0
+    }
     total = 0
-
-    basket = {}
 
     for sku in list(skus):
         if sku in prices:
             basket['sku'] += 1
-
-        elif sku[1] in prices:
-            total += (prices[sku[1]] * sku[0])
         else:
             return -1
 
-        return total
+    for item, count in basket.items():
+        if f'{str(count)}{item}' in special_offers:
+            total += special_offers[f'{str(count)}{item}']
+        else:
+            total += prices[item] * count
+
+    return total
+
 
 
