@@ -40,4 +40,3 @@ def checkout(skus):
             total += BASE_PRICES[item] * count
 
     return total
-

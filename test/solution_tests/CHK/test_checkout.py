@@ -10,4 +10,3 @@ class TestCheckout(TestCase):
         assert checkout('AAAAA') == 200
         assert checkout('AAAAAA') == 250
         assert checkout('AAAAAAAAAA') == 400
-
