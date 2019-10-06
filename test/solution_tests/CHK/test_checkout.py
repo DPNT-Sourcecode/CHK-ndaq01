@@ -2,6 +2,9 @@ from solutions.CHK.checkout_solution import checkout
 
 
 class TestCheckout():
+    def test_illegal_input(self):
+        assert checkout('-') == -1
+
     def test_checkout_r2_basic_deals(self):
         assert checkout('AAA') == 130
         assert checkout('AAAA') == 180
@@ -14,6 +17,7 @@ class TestCheckout():
         assert checkout('EEB') == 80
         assert checkout('EEBB') == 110
         assert checkout('EEBBB') == 125
+
 
 
 

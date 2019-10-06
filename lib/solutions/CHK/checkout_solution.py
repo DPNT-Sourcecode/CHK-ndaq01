@@ -7,6 +7,16 @@ BASE_PRICES = {
     'E': 40
 }
 
+
+def _remove_free_B(basket):
+    divisions, remainder = divmod(basket['E'], 2)
+    if divisions >= basket['B']:
+        basket['B'] = 0
+    else:
+        basket['B'] -= divisions
+    return basket
+
+
 def _get_special_price(count, deal_count, deal_price, base_price):
     divisions, remainder = divmod(count, deal_count)
     return divisions * deal_price + remainder * base_price
@@ -30,13 +40,9 @@ def checkout(skus):
         else:
             return -1
 
+    basket = _remove_free_B(basket)
+
     for item, count in basket.items():
-        if item == 'E':
-            divisions, remainder = divmod(count, 2)
-            if divisions >= basket['B']:
-                basket['B'] = 0
-            else:
-                basket['B'] -= divisions
         if item == 'A':
             price_1 = _get_special_price(count, 3, 130, BASE_PRICES[item])
             price_2 = _get_special_price(count, 5, 200, BASE_PRICES[item])
@@ -48,6 +54,7 @@ def checkout(skus):
             total += BASE_PRICES[item] * count
 
     return total
+
 
 
 
