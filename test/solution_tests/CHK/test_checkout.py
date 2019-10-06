@@ -22,8 +22,3 @@ class TestCheckout():
 
     def test_checkout_r2_combined(self):
         assert checkout('AAAAAEEBAAABB') == 455
-
-
-
-
-
