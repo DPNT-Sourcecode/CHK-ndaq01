@@ -1,14 +1,19 @@
 
+BASE_PRICES = {
+    'A': 50,
+    'B': 30,
+    'C': 20,
+    'D': 15
+}
+
+def _get_special_price(count, deal_count, deal_price, base_price):
+    divisions, remainder = divmod(count, deal_count)
+    return divisions * deal_price + remainder * base_price
+
 
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    prices = {
-        'A': 50,
-        'B': 30,
-        'C': 20,
-        'D': 15
-    }
     basket = {
         'A': 0,
         'B': 0,
@@ -18,19 +23,21 @@ def checkout(skus):
     total = 0
 
     for sku in list(skus):
-        if sku in prices:
+        if sku in BASE_PRICES:
             basket[sku] += 1
         else:
             return -1
 
     for item, count in basket.items():
         if item == 'A':
-            divisions, remainder = divmod(count, 3)
-            total += (divisions * 130 + remainder * prices[item])
+            price_1 = _get_special_price(count, 3, 130, BASE_PRICES[item])
+            price_2 = _get_special_price(count, 5, 200, BASE_PRICES[item])
+            total += min(price_1, price_2)
         elif item == 'B':
             divisions, remainder = divmod(count, 2)
-            total += (divisions * 45 + remainder * prices[item])
+            total += (divisions * 45 + remainder * BASE_PRICES[item])
         else:
-            total += prices[item] * count
+            total += BASE_PRICES[item] * count
 
     return total
+
