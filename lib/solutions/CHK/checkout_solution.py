@@ -3,10 +3,6 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    special_offers = {
-        '3A': 130,
-        '2B': 45
-    }
     prices = {
         'A': 50,
         'B': 30,
@@ -28,9 +24,14 @@ def checkout(skus):
             return -1
 
     for item, count in basket.items():
-        if f'{str(count)}{item}' in special_offers:
-            total += special_offers[f'{str(count)}{item}']
+        if item == 'A':
+            divisions, remainder = divmod(count, 3)
+            total += (divisions * 130 + remainder * prices[item])
+        elif item == 'B':
+            divisions, remainder = divmod(count, 2)
+            total += (divisions * 45 + remainder * prices[item])
         else:
             total += prices[item] * count
 
     return total
+
