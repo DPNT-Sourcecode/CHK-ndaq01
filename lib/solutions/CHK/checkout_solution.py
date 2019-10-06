@@ -32,7 +32,6 @@ def checkout(skus):
         if item == 'A':
             price_1 = _get_special_price(count, 3, 130, BASE_PRICES[item])
             price_2 = _get_special_price(count, 5, 200, BASE_PRICES[item])
-    
             total += min(price_1, price_2)
         elif item == 'B':
             divisions, remainder = divmod(count, 2)
@@ -41,4 +40,5 @@ def checkout(skus):
             total += BASE_PRICES[item] * count
 
     return total
+
 
