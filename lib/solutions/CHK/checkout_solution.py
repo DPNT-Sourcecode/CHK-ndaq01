@@ -23,7 +23,7 @@ def checkout(skus):
 
     for sku in list(skus):
         if sku in prices:
-            basket['sku'] += 1
+            basket[sku] += 1
         else:
             return -1
 
@@ -34,6 +34,3 @@ def checkout(skus):
             total += prices[item] * count
 
     return total
-
-
-
